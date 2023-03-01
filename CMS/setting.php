@@ -7,7 +7,7 @@ $host = $host[0];
 
 define('BP_APP_HANDLER', $protocol.'://'.$host.explode('?', $_SERVER['REQUEST_URI'])[0]);
 
-$obj = json_decode($_POST['PLACEMENT_OPTIONS']); //объект с параметрами, отрисуем сохранённые параметры
+$obj = json_decode($_POST['PLACEMENT_OPTIONS']); 
 $sp       = $obj->current_values->sTypeSP;
 $category = $obj->current_values->sCategoryID;
 $status   = $obj->current_values->sStatusID;

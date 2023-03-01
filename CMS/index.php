@@ -30,14 +30,14 @@ define('BP_APP_HANDLER', $protocol.'://'.$host.explode('?', $_SERVER['REQUEST_UR
             {
                 var params = {
 					'CODE': 'getspel', //код, уникальный для портала
-					'HANDLER': 'https://example.com/example.app/handler.php',//ваш обработчик
+					'HANDLER': 'https://192.168.0.202/app/handler.php',
 					'AUTH_USER_ID': 1,
 					'USE_SUBSCRIPTION': '',
 					'NAME': 'Получить элементы СП',
                     'USE_PLACEMENT': 'Y',
-                    'PLACEMENT_HANDLER': 'https://example.com/example.app/setting.php',//ваш файл настроек
+                    'PLACEMENT_HANDLER': 'https://192.168.0.202/app/handler.php',
 					'DESCRIPTION': 'Принимает тип СП, категорию и стадию, выдаёт массив id элементов на стадии',
-					'PROPERTIES': { //здесь параметры, которые будут задаваться через setting, чтобы не отлавливать символьные коды руками
+					'PROPERTIES': { 
 						'typeSP': {
 							'Name': 'Тип СП',
 							'Type': 'string',
@@ -75,7 +75,7 @@ define('BP_APP_HANDLER', $protocol.'://'.$host.explode('?', $_SERVER['REQUEST_UR
 							'Multiple': 'N'
 						}
 					},
-                    'RETURN_PROPERTIES': { //вернём массив ID привязанных СП
+                    'RETURN_PROPERTIES': { //вернём массив ID 
                         'outputString': {
                             'Name': {
                                 'ru': 'IDs',

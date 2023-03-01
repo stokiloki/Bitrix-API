@@ -5,22 +5,22 @@ $host = $host[0];
 
 define('BP_APP_HANDLER', $protocol.'://'.$host.$_SERVER['REQUEST_URI']);
 
-if (!empty($_REQUEST['workflow_id']))//добавим простые проверки - измените под себя
+if (!empty($_REQUEST['workflow_id']))
 {
     if (!empty($_REQUEST['properties']['typeSP'])){
 
-        $par = array( //сформируем параметры для выборки элементов нужного СП на выбранном статусе
+        $par = array( 
             'entityTypeId' => $_REQUEST['properties']['typeSP'], 
             'select'       => ['id'],
             'order'        => null, 
             'filter'       => ['categoryId' => $_REQUEST['properties']['categoryID'], 'stageId' => $_REQUEST['properties']['statusID']],
         );
 
-        //используем вебхук с правами на CRM, чтобы не отвлекаться на Crest - настраивайте под задачу
+        
         $result = callB24Method('https://example.bitrix24.ru/rest/1/59i35rrrzqg0np/','crm.item.list', $par); //запрашиваем ID's элементов СП
 
         $arr = [];
-        foreach($result['result']['items'] as $item){ //готовим простой массив
+        foreach($result['result']['items'] as $item){ 
             $arr[] = $item['id'];
         }
 
@@ -33,13 +33,13 @@ if (!empty($_REQUEST['workflow_id']))//добавим простые прове�
                 "outputString" => $arr,
             )
         );
-        $r = callB24Method('https://example.bitrix24.ru/rest/','bizproc.event.send', $params);
+        $r = callB24Method('https://portal.unionexper.kz/rest/','bizproc.event.send', $params);
     }
 
 }
 
 
-function callB24Method($bitrix, $method, $params){ //напишем функцию для отправки запросов через вебхук
+function callB24Method($bitrix, $method, $params){ 
     $c = curl_init($bitrix . $method . '.json');
 
     curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
